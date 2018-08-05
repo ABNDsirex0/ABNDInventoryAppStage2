@@ -156,15 +156,15 @@ public class BookProvider extends ContentProvider {
             throw new IllegalArgumentException("Supplier requires a name");
         }
 
-        // If the quantity is provided, check that it's greater than or equal to 0 kg
+        // If the quantity is provided, check that it's greater than or equal to 0
         Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
         if (quantity != null && quantity < 0) {
             throw new IllegalArgumentException("Inappropriate quantity");
         }
 
 
-        // If the price is provided, check that it's greater than or equal to 0 kg
-        Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
+        // If the price is provided, check that it's greater than or equal to 0
+        Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
         if (price != null && price < 0) {
             throw new IllegalArgumentException("Inappropriate price");
         }
@@ -213,7 +213,7 @@ public class BookProvider extends ContentProvider {
      * Return the number of rows that were successfully updated.
      */
     private int updateBook(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        // If the {@link bookEntry#COLUMN_BOOK_NAME} key is present,
+        // If the {@link BookEntry#COLUMN_BOOK_NAME} key is present,
         // check that the name value is not null.
         if (values.containsKey(BookEntry.COLUMN_BOOK_NAME)) {
             String name = values.getAsString(BookEntry.COLUMN_BOOK_NAME);
@@ -221,34 +221,41 @@ public class BookProvider extends ContentProvider {
                 throw new IllegalArgumentException("book requires a name");
             }
         }
-//TODO sanity check
-        // If the {@link bookEntry#COLUMN_book_GENDER} key is present,
-        // check that the gender value is valid.
-        if (values.containsKey(BookEntry.COLUMN_PET_GENDER)) {
-            Integer gender = values.getAsInteger(BookEntry.COLUMN_PET_GENDER);
-            if (gender == null || !BookEntry.isValidGender(gender)) {
-                throw new IllegalArgumentException("Pet requires valid gender");
+        // If the {@link BookEntry#COLUMN_BOOK_SUPPLIER} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_SUPPLIER)) {
+            String supplier = values.getAsString(BookEntry.COLUMN_BOOK_SUPPLIER);
+            if (supplier == null) {
+                throw new IllegalArgumentException("supplier requires a name");
             }
         }
 
-        // If the {@link PetEntry#COLUMN_PET_WEIGHT} key is present,
-        // check that the weight value is valid.
-        if (values.containsKey(BookEntry.COLUMN_PET_WEIGHT)) {
-            // Check that the weight is greater than or equal to 0 kg
-            Integer weight = values.getAsInteger(BookEntry.COLUMN_PET_WEIGHT);
-            if (weight != null && weight < 0) {
-                throw new IllegalArgumentException("Pet requires valid weight");
+        // If the {@link PetEntry#COLUMN_BOOK_QUANTITY} key is present,
+        // check that the quantity value is valid.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_QUANTITY)) {
+            // Check that the quantity is greater than or equal to 0
+            Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
+            if (quantity != null && quantity < 0) {
+                throw new IllegalArgumentException("Invalid quantity");
             }
         }
 
-        // No need to check the breed, any value is valid (including null).
+        // If the {@link PetEntry#COLUMN_BOOK_PRICE} key is present,
+        // check that the quantity value is valid.
+        if (values.containsKey(BookEntry.COLUMN_BOOK_PRICE)) {
+            // Check that the quantity is greater than or equal to 0
+            Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
+            if (price != null && price < 0) {
+                throw new IllegalArgumentException("Invalid price");
+            }
+        }
 
         // If there are no values to update, then don't try to update the database
         if (values.size() == 0) {
             return 0;
         }
 
-        // Otherwise, get writeable database to update the data
+        // Otherwise, get writable database to update the data
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Perform the update on the database and get the number of rows affected
@@ -266,7 +273,7 @@ public class BookProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Get writeable database
+        // Get writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Track the number of rows that were deleted
