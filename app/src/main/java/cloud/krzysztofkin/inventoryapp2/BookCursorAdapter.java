@@ -64,8 +64,6 @@ public class BookCursorAdapter extends CursorAdapter {
                     Uri currentPetUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, bookID);
                     context.getContentResolver().update(currentPetUri, values, null, null);
                 }
-                //TODO after list listener implementation check sell button and disable log
-                Log.i("Lista","click sell");
             }
         });
     }
