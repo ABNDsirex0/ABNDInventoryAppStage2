@@ -6,31 +6,40 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import cloud.krzysztofkin.inventoryapp2.data.BookContract.BookEntry;
 import cloud.krzysztofkin.inventoryapp2.data.BookDbHelper;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     * Adapter for listView
+     **/
+    BookCursorAdapter cursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //TODO obsługa listview z adapterem
-
+        //TODO obsługa listview z adapterem - loader
+        ListView bookListView = (ListView) findViewById(R.id.list);
+        View emptyView = findViewById(R.id.empty_list_view);
+        bookListView.setEmptyView(emptyView);
+        cursorAdapter = new BookCursorAdapter(this,null);
+        bookListView.setAdapter(cursorAdapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_list,menu);
+        getMenuInflater().inflate(R.menu.menu_list, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //TODO czyszczenie bazy
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_insert_sample_data:
                 insertSampleBook();
                 return true;
@@ -54,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
     private void insertSampleBook() {
         // Create a ContentValues object where column names are the keys,
         ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_BOOK_NAME,"A book");
-        values.put(BookEntry.COLUMN_BOOK_PRICE,7);
-        values.put(BookEntry.COLUMN_BOOK_QUANTITY,2);
-        values.put(BookEntry.COLUMN_BOOK_SUPPLIER,"A supplier");
-        values.put(BookEntry.COLUMN_BOOK_PHONE,"77777");
+        values.put(BookEntry.COLUMN_BOOK_NAME, "A book");
+        values.put(BookEntry.COLUMN_BOOK_PRICE, 7);
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, 2);
+        values.put(BookEntry.COLUMN_BOOK_SUPPLIER, "A supplier");
+        values.put(BookEntry.COLUMN_BOOK_PHONE, "77777");
         //use content resolver to add data
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
     }
