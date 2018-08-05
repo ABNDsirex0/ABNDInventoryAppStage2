@@ -6,4 +6,6 @@
     <string name="empty_view_subtitle_text">add a book</string>
     <string name="title_new_book">Add a Book</string>
     <string name="title_edit_book">Edit Book</string>
+    <string name="delete_book_failed">Error with deleting book</string>
+    <string name="delete_book_successful">Book deleted</string>
 </resources>

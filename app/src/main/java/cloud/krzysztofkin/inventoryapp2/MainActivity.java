@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        //TODO on item list click
         ListView bookListView = findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_list_view);
         bookListView.setEmptyView(emptyView);
