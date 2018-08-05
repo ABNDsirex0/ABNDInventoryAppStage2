@@ -1,11 +1,14 @@
 package cloud.krzysztofkin.inventoryapp2;
 
+import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,7 +25,9 @@ public class MainActivity extends AppCompatActivity implements
      **/
     BookCursorAdapter cursorAdapter;
 
-    /** Identifier for the book data loader */
+    /**
+     * Identifier for the book data loader
+     */
     private static final int BOOK_LOADER = 0;
 
     @Override
@@ -30,6 +35,16 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //TODO FAB floating action button
+        // Setup FAB to open EditorActivity
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EditorActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //TODO on item list click
         //TODO sell button click
         ListView bookListView = findViewById(R.id.list);
