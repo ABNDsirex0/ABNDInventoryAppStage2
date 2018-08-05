@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //TODO obsługa listview z adapterem - loader
+        //TODO FAB floating action button
+        //TODO on item list click
+        //TODO sell button click
         ListView bookListView = findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_list_view);
         bookListView.setEmptyView(emptyView);
