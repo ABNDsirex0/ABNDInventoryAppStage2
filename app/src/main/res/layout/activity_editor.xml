@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/name_EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -41,11 +41,11 @@
         android:inputType="numberDecimal"
         android:text="Price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintStart_toStartOf="@+id/name_EditText"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/quantity_EditText"
         android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,29 +54,31 @@
         android:ems="10"
         android:inputType="number"
         android:text="Quantity"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/more_button"
         app:layout_constraintStart_toStartOf="@+id/editText3"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/more_button"
         android:layout_width="47dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="+"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        android:onClick="quantityMore"
+        app:layout_constraintEnd_toStartOf="@+id/less_button"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/less_button"
         android:layout_width="46dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:text="-"
+        android:onClick="quantityLess"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
@@ -89,7 +91,7 @@
         android:layout_marginTop="8dp"
         android:text="Stock"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/name_EditText" />
 
     <TextView
         android:id="@+id/textView5"
@@ -100,10 +102,10 @@
         android:layout_marginTop="8dp"
         android:text="Supplier"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/quantity_EditText" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/supplier_name_EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -113,29 +115,30 @@
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintStart_toStartOf="@+id/quantity_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/quantity_EditText" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/phone_EditText"
         android:layout_width="154dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Phone"
-        app:layout_constraintStart_toStartOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintStart_toStartOf="@+id/supplier_name_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/supplier_name_EditText" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/phone_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:onClick="phoneIntent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"
+        app:layout_constraintTop_toBottomOf="@+id/supplier_name_EditText"
         app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
 </android.support.constraint.ConstraintLayout>

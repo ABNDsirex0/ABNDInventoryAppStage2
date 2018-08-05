@@ -4,4 +4,6 @@
     <string name="add_sample_data">Add sample data</string>
     <string name="empty_view_title_text">The bookshelf is empty</string>
     <string name="empty_view_subtitle_text">add a book</string>
+    <string name="title_new_book">Add a Book</string>
+    <string name="title_edit_book">Edit Book</string>
 </resources>
