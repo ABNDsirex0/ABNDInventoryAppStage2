@@ -9,4 +9,17 @@
     <string name="delete_book_failed">Error with deleting book</string>
     <string name="delete_book_successful">Book deleted</string>
     <string name="fill_all_fields">empty product information is not accepted</string>
+    <string name="book">Book</string>
+    <string name="add_sign">+</string>
+    <string name="remove_string">-</string>
+    <string name="stock">Stock</string>
+    <string name="supplier">Supplier</string>
+    <string name="phone_image_desc">phone image</string>
+    <string name="phone">Phone</string>
+    <string name="price">Price</string>
+    <string name="quantity">Quantity</string>
+    <string name="name">Name</string>
+    <string name="empty_bookcase_desc">Empty bookcase</string>
+    <string name="price_on_list">Price:</string>
+    <string name="quantity_on_list">Quantity:</string>
 </resources>
