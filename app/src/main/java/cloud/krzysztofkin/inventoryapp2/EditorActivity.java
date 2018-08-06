@@ -20,7 +20,7 @@ import cloud.krzysztofkin.inventoryapp2.data.BookContract.BookEntry;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     /**
-     * Content URI for the existing pet (null if it's a new pet)
+     * Content URI for the existing book (null if it's a new book)
      */
     private Uri currentBookUri;
 

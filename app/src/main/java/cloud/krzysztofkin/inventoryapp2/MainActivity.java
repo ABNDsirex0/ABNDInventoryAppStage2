@@ -58,17 +58,17 @@ public class MainActivity extends AppCompatActivity implements
                 // Create new intent to go to {@link EditorActivity}
                 Intent intent = new Intent(MainActivity.this, EditorActivity.class);
 
-                // Form the content URI that represents the specific pet that was clicked on,
+                // Form the content URI that represents the specific book that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
-                // {@link PetEntry#CONTENT_URI}.
-                // For example, the URI would be "content://com.example.android.pets/pets/2"
-                // if the pet with ID 2 was clicked on.
+                // {@link BookEntry#CONTENT_URI}.
+                // For example, the URI would be "content://cloud.krzysztofkin.inventoryapp2/books/2"
+                // if the book with ID 2 was clicked on.
                 Uri currentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
                 intent.setData(currentBookUri);
 
-                // Launch the {@link EditorActivity} to display the data for the current pet.
+                // Launch the {@link EditorActivity} to display the data for the current book.
                 startActivity(intent);
             }
         });
