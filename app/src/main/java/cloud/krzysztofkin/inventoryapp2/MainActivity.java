@@ -108,11 +108,11 @@ public class MainActivity extends AppCompatActivity implements
     private void insertSampleBook() {
         // Create a ContentValues object where column names are the keys,
         ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_BOOK_NAME, "A Sample Book");
+        values.put(BookEntry.COLUMN_BOOK_NAME, getText(R.string.sample_book).toString());
         values.put(BookEntry.COLUMN_BOOK_PRICE, 17);
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, 2);
-        values.put(BookEntry.COLUMN_BOOK_SUPPLIER, "A supplier");
-        values.put(BookEntry.COLUMN_BOOK_PHONE, "+48000000001");
+        values.put(BookEntry.COLUMN_BOOK_SUPPLIER, getText(R.string.sample_supplier).toString());
+        values.put(BookEntry.COLUMN_BOOK_PHONE, getText(R.string.sample_phone).toString());
         //use content resolver to add data
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
     }

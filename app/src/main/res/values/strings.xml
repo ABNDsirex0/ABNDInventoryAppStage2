@@ -22,4 +22,7 @@
     <string name="empty_bookcase_desc">Empty bookcase</string>
     <string name="price_on_list">Price:</string>
     <string name="quantity_on_list">Quantity:</string>
+    <string name="sample_book">A Sample Book</string>
+    <string name="sample_supplier">A supplier</string>
+    <string name="sample_phone">+48000000001</string>
 </resources>
