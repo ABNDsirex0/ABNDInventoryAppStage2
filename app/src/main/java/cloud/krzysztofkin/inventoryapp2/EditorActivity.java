@@ -49,22 +49,22 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
 
         // Examine the intent that was used to launch this activity,
-        // in order to figure out if we're creating a new pet or editing an existing one.
+        // in order to figure out if we're creating a new book or editing an existing one.
         Intent intent = getIntent();
         currentBookUri = intent.getData();
-        // If the intent DOES NOT contain a pet content URI, then we know that we are
-        // creating a new pet.
+        // If the intent DOES NOT contain a book content URI, then we know that we are
+        // creating a new book.
         if (currentBookUri == null) {
-            // This is a new pet, so change the app bar to say "Add a Book"
+            // This is a new book, so change the app bar to say "Add a Book"
             setTitle(getString(R.string.title_new_book));
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
-            // (It doesn't make sense to delete a pet that hasn't been created yet.)
+            // (It doesn't make sense to delete a book that hasn't been created yet.)
             invalidateOptionsMenu();
         } else {
-            // Otherwise this is an existing pet, so change app bar to say "Edit Book"
+            // Otherwise this is an existing book, so change app bar to say "Edit Book"
             setTitle(getString(R.string.title_edit_book));
 
-            // Initialize a loader to read the pet data from the database
+            // Initialize a loader to read the book data from the database
             // and display the current values in the editor
             getLoaderManager().initLoader(EXISTING_BOOK_LOADER, null, this);
         }
@@ -81,7 +81,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        // If this is a new pet, hide the "Delete" menu item.
+        // If this is a new book, hide the "Delete" menu item.
         if (currentBookUri == null) {
             MenuItem menuItem = menu.findItem(R.id.action_delete);
             menuItem.setVisible(false);
@@ -132,11 +132,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         // Determine if this is a new or existing book by checking if currentBookUri is null or not
         if (currentBookUri == null) {
-            // This is a NEW pet, so insert a new pet into the provider,
-            // returning the content URI for the new pet.
+            // This is a NEW book, so insert a new book into the provider,
+            // returning the content URI for the new book.
             Uri uri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
         } else {
-            // Otherwise this is an EXISTING book, so update the pet with content URI: murrentBookUri
+            // Otherwise this is an EXISTING book, so update the book with content URI: murrentBookUri
             // and pass in the new ContentValues. Pass in null for the selection and selection args
             // because currentBookUri will already identify the correct row in the database that
             // we want to modify.
@@ -201,7 +201,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // Proceed with moving to the first row of the cursor and reading data from it
         // (This should be the only row in the cursor)
         if (cursor.moveToFirst()) {
-            // Find the columns of pet attributes that we're interested in
+            // Find the columns of book attributes that we're interested in
             int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
             int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
