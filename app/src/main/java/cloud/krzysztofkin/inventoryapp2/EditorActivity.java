@@ -1,6 +1,7 @@
 package cloud.krzysztofkin.inventoryapp2;
 
 import android.app.LoaderManager;
+import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -8,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,12 +91,58 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+
+        switch (item.getItemId()) {
             case R.id.action_delete:
                 deleteBook();
                 return true;
+            case R.id.action_save:
+                saveBook();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void saveBook() {
+        String nameString = nameTextView.getText().toString().trim();
+        String priceString = priceTextView.getText().toString().trim();
+        String quantityString = quantityTextView.getText().toString().trim();
+        String supplierString = supplierTextView.getText().toString().trim();
+        String phoneString = phoneTextView.getText().toString().trim();
+        //if any field is empty don't save
+        if (TextUtils.isEmpty(nameString) ||
+                TextUtils.isEmpty(priceString) ||
+                TextUtils.isEmpty(quantityString) ||
+                TextUtils.isEmpty(supplierString) ||
+                TextUtils.isEmpty(phoneString)) {
+            Toast.makeText(this, getString(R.string.fill_all_fields),
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //All fields OK prepare values
+        ContentValues values = new ContentValues();
+        values.put(BookEntry.COLUMN_BOOK_NAME, nameString);
+        int price = Integer.parseInt(priceString);
+        values.put(BookEntry.COLUMN_BOOK_PRICE, price);
+        int quantity = Integer.parseInt(quantityString);
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantity);
+        values.put(BookEntry.COLUMN_BOOK_SUPPLIER, supplierString);
+        values.put(BookEntry.COLUMN_BOOK_PHONE, phoneString);
+
+        // Determine if this is a new or existing book by checking if currentBookUri is null or not
+        if (currentBookUri == null) {
+            // This is a NEW pet, so insert a new pet into the provider,
+            // returning the content URI for the new pet.
+            Uri uri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+        } else {
+            // Otherwise this is an EXISTING book, so update the pet with content URI: murrentBookUri
+            // and pass in the new ContentValues. Pass in null for the selection and selection args
+            // because currentBookUri will already identify the correct row in the database that
+            // we want to modify.
+            int rowsAffected = getContentResolver().update(currentBookUri, values, null, null);
+        }
+        finish();
     }
 
     private void deleteBook() {
@@ -116,12 +164,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     public void phoneIntent(View view) {
-        String phoneNumber = "tel:"+phoneTextView.getText().toString();
+        String phoneNumber = "tel:" + phoneTextView.getText().toString();
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse(phoneNumber));
         startActivity(intent);
     }
-
 
 
     @Override
@@ -193,7 +240,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         int quantity;
         try {
             quantity = Integer.parseInt(quantityText);
-        } catch (NumberFormatException nfe ){
+        } catch (NumberFormatException nfe) {
             quantity = 0;
         }
 

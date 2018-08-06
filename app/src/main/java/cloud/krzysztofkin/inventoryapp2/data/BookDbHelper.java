@@ -4,7 +4,6 @@ package cloud.krzysztofkin.inventoryapp2.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import cloud.krzysztofkin.inventoryapp2.data.BookContract.BookEntry;
 
@@ -24,7 +23,7 @@ public class BookDbHelper extends SQLiteOpenHelper {
      *
      * @param context of the app
      */
-    public BookDbHelper(Context context) {
+    BookDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

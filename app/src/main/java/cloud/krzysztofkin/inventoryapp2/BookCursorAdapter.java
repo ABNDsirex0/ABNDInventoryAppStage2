@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,11 @@ import cloud.krzysztofkin.inventoryapp2.data.BookContract.BookEntry;
 
 public class BookCursorAdapter extends CursorAdapter {
     /**
-     * @param context
-     * @param c
+     * @param context context
+     * @param c       cursor
      * @deprecated
      */
+    @Deprecated
     public BookCursorAdapter(Context context, Cursor c) {
         super(context, c);
     }
@@ -57,9 +57,9 @@ public class BookCursorAdapter extends CursorAdapter {
 
             @Override
             public void onClick(View view) {
-                if(bookQuantity>0){
+                if (bookQuantity > 0) {
                     ContentValues values = new ContentValues();
-                    values.put(BookEntry.COLUMN_BOOK_QUANTITY,bookQuantity-1);
+                    values.put(BookEntry.COLUMN_BOOK_QUANTITY, bookQuantity - 1);
 
                     Uri currentPetUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, bookID);
                     context.getContentResolver().update(currentPetUri, values, null, null);

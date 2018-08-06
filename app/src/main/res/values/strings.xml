@@ -8,4 +8,5 @@
     <string name="title_edit_book">Edit Book</string>
     <string name="delete_book_failed">Error with deleting book</string>
     <string name="delete_book_successful">Book deleted</string>
+    <string name="fill_all_fields">empty product information is not accepted</string>
 </resources>
